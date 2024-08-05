@@ -212,7 +212,33 @@
 		</dependency>
 
 
+<!-- https://mvnrepository.com/artifact/com.azure.spring/spring-cloud-azure-starter-active-directory -->
+<dependency>
+    <groupId>com.azure.spring</groupId>
+    <artifactId>spring-cloud-azure-starter-active-directory</artifactId>
+    <version>6.0.0-beta.4</version>
+</dependency>
+<!-- https://mvnrepository.com/artifact/io.rest-assured/rest-assured -->
+<dependency>
+    <groupId>io.rest-assured</groupId>
+    <artifactId>rest-assured</artifactId>
+    <version>5.5.0</version>
+    <scope>test</scope>
+</dependency>
 
+<dependency>
+    <groupId>org.jboss.aerogear</groupId>
+    <artifactId>aerogear-otp-java</artifactId>
+    <version>1.0.0</version>
+</dependency>
+
+
+
+		<dependency>
+			<groupId>A</groupId>
+			<artifactId>A</artifactId>
+			<version>0.0.1-SNAPSHOT</version>
+		</dependency>
 	</dependencies>
 
 
