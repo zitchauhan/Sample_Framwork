@@ -1,5 +1,9 @@
 package hooks;
 
+import java.io.IOException;
+import java.io.InputStream;
+import java.util.Properties;
+
 import org.openqa.selenium.WebDriver;
 
 import com.aventstack.extentreports.ExtentTest;
@@ -10,6 +14,7 @@ import io.cucumber.java.Before;
 import io.cucumber.java.Scenario;
 import utilities.RetryManager;
 import utilities.ConfigReader;
+import utilities.TestNGXmlGenerator;
 
 public class DriverHooks {
     // Fetch configurations
@@ -24,9 +29,8 @@ public class DriverHooks {
         WebDriver driver = BaseClass.getDriver();
         System.out.println("WebDriver initialized: " + driver);
 
-        // Setup before each scenario
-       // ConfigReader
-        TestSetup.setup();
+        // Setup configuration and generate TestNG XML
+        setupConfiguration();
 
         // Initialize test report for the scenario
         RetryManager.initializeTest(scenario);
@@ -39,5 +43,19 @@ public class DriverHooks {
         
         // Close WebDriver and perform cleanup
         BaseClass.quitDriver();
+    }
+
+    private void setupConfiguration() {
+        Properties properties = new Properties();
+        try (InputStream inputStream = getClass().getClassLoader().getResourceAsStream("config/config.properties")) {
+            if (inputStream == null) {
+                throw new RuntimeException("Property file 'config/config.properties' not found in the classpath");
+            }
+            properties.load(inputStream);
+            TestNGXmlGenerator.generateTestNGXml(properties);
+        } catch (IOException e) {
+            e.printStackTrace();
+            throw new RuntimeException("Failed to load properties file", e);
+        }
     }
 }
