@@ -8,104 +8,104 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class HtmlTableUtils {
-    private WebDriver driver;
+	private WebDriver driver;
 
-    public HtmlTableUtils(WebDriver driver) {
-        this.driver = driver;
-    }
+	public HtmlTableUtils(WebDriver driver) {
+		this.driver = driver;
+	}
 
-    // Get the number of rows in a table (excluding header)
-    public int getRowCount(WebElement table) {
-        List<WebElement> rows = table.findElements(By.tagName("tr"));
-        return rows.size() - 1;  // Subtracting 1 to exclude the header row
-    }
+	// Get the number of rows in a table (excluding header)
+	public int getRowCount(WebElement table) {
+		List<WebElement> rows = table.findElements(By.tagName("tr"));
+		return rows.size() - 1; // Subtracting 1 to exclude the header row
+	}
 
-    // Get the number of columns in a table
-    public int getColumnCount(WebElement table) {
-        WebElement headerRow = table.findElement(By.tagName("tr"));
-        List<WebElement> columns = headerRow.findElements(By.tagName("th"));
-        return columns.size();
-    }
+	// Get the number of columns in a table
+	public int getColumnCount(WebElement table) {
+		WebElement headerRow = table.findElement(By.tagName("tr"));
+		List<WebElement> columns = headerRow.findElements(By.tagName("th"));
+		return columns.size();
+	}
 
-    // Get a specific cell (row and column are 0-indexed)
-    public WebElement getCell(WebElement table, int row, int column) {
-        List<WebElement> rows = table.findElements(By.tagName("tr"));
-        WebElement specificRow = rows.get(row + 1);  // +1 to skip the header row
-        List<WebElement> cells = specificRow.findElements(By.tagName("td"));
-        return cells.get(column);
-    }
+	// Get a specific cell (row and column are 0-indexed)
+	public WebElement getCell(WebElement table, int row, int column) {
+		List<WebElement> rows = table.findElements(By.tagName("tr"));
+		WebElement specificRow = rows.get(row + 1); // +1 to skip the header row
+		List<WebElement> cells = specificRow.findElements(By.tagName("td"));
+		return cells.get(column);
+	}
 
-    // Get the text from a specific cell
-    public String getCellText(WebElement table, int row, int column) {
-        WebElement cell = getCell(table, row, column);
-        return cell.getText();
-    }
+	// Get the text from a specific cell
+	public String getCellText(WebElement table, int row, int column) {
+		WebElement cell = getCell(table, row, column);
+		return cell.getText();
+	}
 
-    // Get all data from the table as a list of lists
-    public List<List<String>> getTableData(WebElement table) {
-        List<List<String>> tableData = new ArrayList<>();
-        List<WebElement> rows = table.findElements(By.tagName("tr"));
+	// Get all data from the table as a list of lists
+	public List<List<String>> getTableData(WebElement table) {
+		List<List<String>> tableData = new ArrayList<>();
+		List<WebElement> rows = table.findElements(By.tagName("tr"));
 
-        for (int i = 1; i < rows.size(); i++) {  // Start from 1 to skip header row
-            List<String> rowData = new ArrayList<>();
-            List<WebElement> cells = rows.get(i).findElements(By.tagName("td"));
+		for (int i = 1; i < rows.size(); i++) { // Start from 1 to skip header row
+			List<String> rowData = new ArrayList<>();
+			List<WebElement> cells = rows.get(i).findElements(By.tagName("td"));
 
-            for (WebElement cell : cells) {
-                rowData.add(cell.getText());
-            }
+			for (WebElement cell : cells) {
+				rowData.add(cell.getText());
+			}
 
-            tableData.add(rowData);
-        }
+			tableData.add(rowData);
+		}
 
-        return tableData;
-    }
+		return tableData;
+	}
 
-    // Get data from a specific column
-    public List<String> getColumnData(WebElement table, int column) {
-        List<String> columnData = new ArrayList<>();
-        List<WebElement> rows = table.findElements(By.tagName("tr"));
+	// Get data from a specific column
+	public List<String> getColumnData(WebElement table, int column) {
+		List<String> columnData = new ArrayList<>();
+		List<WebElement> rows = table.findElements(By.tagName("tr"));
 
-        for (int i = 1; i < rows.size(); i++) {  // Start from 1 to skip header row
-            List<WebElement> cells = rows.get(i).findElements(By.tagName("td"));
-            columnData.add(cells.get(column).getText());
-        }
+		for (int i = 1; i < rows.size(); i++) { // Start from 1 to skip header row
+			List<WebElement> cells = rows.get(i).findElements(By.tagName("td"));
+			columnData.add(cells.get(column).getText());
+		}
 
-        return columnData;
-    }
+		return columnData;
+	}
 
-    // Get data from a specific row
-    public List<String> getRowData(WebElement table, int row) {
-        List<String> rowData = new ArrayList<>();
-        WebElement specificRow = table.findElements(By.tagName("tr")).get(row + 1);  // +1 to skip the header row
-        List<WebElement> cells = specificRow.findElements(By.tagName("td"));
+	// Get data from a specific row
+	public List<String> getRowData(WebElement table, int row) {
+		List<String> rowData = new ArrayList<>();
+		WebElement specificRow = table.findElements(By.tagName("tr")).get(row + 1); // +1 to skip the header row
+		List<WebElement> cells = specificRow.findElements(By.tagName("td"));
 
-        for (WebElement cell : cells) {
-            rowData.add(cell.getText());
-        }
+		for (WebElement cell : cells) {
+			rowData.add(cell.getText());
+		}
 
-        return rowData;
-    }
+		return rowData;
+	}
 
-    // Find a cell by its text content and return the cell element
-    public WebElement findCellByText(WebElement table, String searchText) {
-        List<WebElement> rows = table.findElements(By.tagName("tr"));
+	// Find a cell by its text content and return the cell element
+	public WebElement findCellByText(WebElement table, String searchText) {
+		List<WebElement> rows = table.findElements(By.tagName("tr"));
 
-        for (int i = 1; i < rows.size(); i++) {  // Start from 1 to skip header row
-            List<WebElement> cells = rows.get(i).findElements(By.tagName("td"));
+		for (int i = 1; i < rows.size(); i++) { // Start from 1 to skip header row
+			List<WebElement> cells = rows.get(i).findElements(By.tagName("td"));
 
-            for (WebElement cell : cells) {
-                if (cell.getText().equalsIgnoreCase(searchText)) {
-                    return cell;
-                }
-            }
-        }
+			for (WebElement cell : cells) {
+				if (cell.getText().equalsIgnoreCase(searchText)) {
+					return cell;
+				}
+			}
+		}
 
-        return null;  // Return null if no cell with the given text is found
-    }
+		return null; // Return null if no cell with the given text is found
+	}
 
-    // Click on a specific cell based on row and column
-    public void clickCell(WebElement table, int row, int column) {
-        WebElement cell = getCell(table, row, column);
-        cell.click();
-    }
+	// Click on a specific cell based on row and column
+	public void clickCell(WebElement table, int row, int column) {
+		WebElement cell = getCell(table, row, column);
+		cell.click();
+	}
 }

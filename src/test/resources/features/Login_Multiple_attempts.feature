@@ -1,7 +1,7 @@
 Feature: Login Feature Multiple attempts
 
   Scenario: Multiple login attempts
-    Given the user is on the login page
+    Given The user is on Open Browser and Enter URL
     When the user enters the following credentials
       | username    | password   |
       | user1       | pass1      |

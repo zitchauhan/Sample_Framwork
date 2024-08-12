@@ -19,7 +19,6 @@ import io.cucumber.java.en.When;
 import pageObjects.LoginPage;
 import utilities.ExtentReportManager;
 
-
 public class LoginSteps {
 	private WebDriver driver;
 	private LoginPage loginPage;
@@ -35,15 +34,22 @@ public class LoginSteps {
 
 	}
 
+	@Given("The user is on Open Browser and Enter URL")
 
-	@Given("The user is on the login page")
-	public void user_is_on_login_page() throws IOException {
+	public void The_user_is_on_Open_Browser_and_Enter_URL() throws IOException {
+
 		String url = BaseClass.getProperty("url");
+
 		driver.get(url);
+
 		test = ExtentReportManager.getTest();
+
 		if (test != null) {
+
 			test.info("User is on the login page");
+
 		} else {
+
 			System.out.println("ExtentTest is not initialized.");
 		}
 
@@ -67,25 +73,26 @@ public class LoginSteps {
 		// Verification logic here
 		test.pass("User redirected to homepage successfully");
 	}
-	
+
 	@Given("the user is on the login page")
 	public void the_user_is_on_the_login_page() {
-	    // Write code here that turns the phrase above into concrete actions
-	   
-	}
-	@When("the user enters the following credentials")
-    public void the_user_enters_the_following_credentials(DataTable dataTable) {
-        List<Map<String, String>> credentials = dataTable.asMaps(String.class, String.class);
-        for (Map<String, String> credential : credentials) {
-            String username = credential.get("username");
-            String password = credential.get("password");
-            // Code to enter username and password
-            System.out.println("Username: " + username + ", Password: " + password);
-        }
-    }
+		// Write code here that turns the phrase above into concrete actions
 
-    @Then("the login should be successful")
-    public void the_login_should_be_successful() {
-        // Code to verify successful login
-    }
+	}
+
+	@When("the user enters the following credentials")
+	public void the_user_enters_the_following_credentials(DataTable dataTable) {
+		List<Map<String, String>> credentials = dataTable.asMaps(String.class, String.class);
+		for (Map<String, String> credential : credentials) {
+			String username = credential.get("username");
+			String password = credential.get("password");
+			// Code to enter username and password
+			System.out.println("Username: " + username + ", Password: " + password);
+		}
+	}
+
+	@Then("the login should be successful")
+	public void the_login_should_be_successful() {
+		// Code to verify successful login
+	}
 }

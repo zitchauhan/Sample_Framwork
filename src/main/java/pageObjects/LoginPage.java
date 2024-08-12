@@ -25,17 +25,20 @@ public class LoginPage {
 	@FindBy(xpath = "//*[@type='submit']")
 	WebElement loginButton;
 
-	public void enterUsername(String user) {
+	public void enterUsername(String user) 
+	{
 		WaitUtils.waitForVisibility(driver, username);
 		username.sendKeys(user);
 	}
 
-	public void enterPassword(String pass) {
+	public void enterPassword(String pass) 
+	{
 		WaitUtils.waitForVisibility(driver, password);
 		password.sendKeys(pass);
 	}
 
-	public void clickLogin() {
+	public void clickLogin()
+	{
 		WaitUtils.waitForElementToBeClickable(driver, loginButton);
 		loginButton.click();
 	}

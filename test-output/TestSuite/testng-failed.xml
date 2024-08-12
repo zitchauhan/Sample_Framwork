@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "https://testng.org/testng-1.0.dtd">
+<suite parallel="tests" name="Failed suite [TestSuite]" guice-stage="DEVELOPMENT">
+  <listeners>
+    <listener class-name="utilities.RetryListener"/>
+  </listeners>
+  <test thread-count="5" parallel="tests" name="Test1(failed)">
+    <classes>
+      <class name="runners.TestNGTestRunner">
+        <methods>
+          <include name="setUpClass"/>
+          <include name="runScenario" invocation-numbers="0 0 0 0"/>
+          <include name="tearDownClass"/>
+        </methods>
+      </class> <!-- runners.TestNGTestRunner -->
+    </classes>
+  </test> <!-- Test1(failed) -->
+</suite> <!-- Failed suite [TestSuite] -->

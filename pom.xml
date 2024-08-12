@@ -49,24 +49,16 @@
 						</suiteXmlFiles>
 
 						<useSystemClassLoader>false</useSystemClassLoader>
+
 						<includes>
 							<!--   <include>**/*TestRunner.java</include> -->
 							<include>**/*TestNGTestRunner.java</include>
 						</includes>
 
-						<!--   <parallel>classes</parallel>  Run test methods in
-						parallel -->
-
-
-						<!--	<threadCount>4</threadCount>    Number of threads for
-						parallel execution -->
-
+						<parallel>${parallelExecution}</parallel>
+						<threadCount>${threadCount}</threadCount>
 
 						<testSourceDirectory>src/test/java</testSourceDirectory>
-
-						<parallel>${parallel}</parallel>
-
-						<threadCount>${threadCount}</threadCount>
 
 
 					</configuration>
@@ -102,55 +94,6 @@
 			<artifactId>cucumber-java</artifactId>
 			<version>7.18.1</version>
 		</dependency>
-		<!-- 	
-   <dependency>
-        <groupId>io.cucumber</groupId>
-        <artifactId>cucumber-junit-platform-engine</artifactId>
-        <version>7.18.1</version>
-        <scope>test</scope>
-    </dependency>
-    -->
-
-		<!--
-		https://mvnrepository.com/artifact/org.junit.jupiter/junit-jupiter-api -->
-
-		<!-- 
-
-<dependency>
-    <groupId>org.junit.jupiter</groupId>
-    <artifactId>junit-jupiter-api</artifactId>
-    <version>5.9.3</version>
-    <scope>test</scope>
-</dependency>
-
--->
-
-		<!-- JUnit Jupiter Engine -->
-
-		<!--
-    
-    <dependency>
-        <groupId>org.junit.jupiter</groupId>
-        <artifactId>junit-jupiter-engine</artifactId>
-        <version>5.9.3</version>
-        <scope>test</scope>
-    </dependency>
-    
-    -->
-
-		<!-- JUnit Vintage Engine (if you need to run JUnit 4 tests) -->
-
-		<!--
-    
-    <dependency>
-        <groupId>org.junit.vintage</groupId>
-        <artifactId>junit-vintage-engine</artifactId>
-        <version>5.9.3</version>
-        <scope>test</scope>
-    </dependency>
-
-
--->
 
 		<!-- Selenium Dependency -->
 		<dependency>
@@ -198,28 +141,42 @@
 
 
 		<!-- Cucumber Dependencies  TEST NG -->
+
+
+		<!-- https://mvnrepository.com/artifact/io.cucumber/cucumber-testng -->
 		<dependency>
 			<groupId>io.cucumber</groupId>
 			<artifactId>cucumber-testng</artifactId>
-			<version>7.13.0</version> <!-- Replace with the latest version -->
+			<version>7.18.1</version>
 		</dependency>
+
+		<!-- https://mvnrepository.com/artifact/org.testng/testng -->
+		<!-- https://mvnrepository.com/artifact/org.testng/testng -->
 		<!-- https://mvnrepository.com/artifact/org.testng/testng -->
 		<dependency>
 			<groupId>org.testng</groupId>
 			<artifactId>testng</artifactId>
-			<version>7.9.0</version>
+			<version>7.8.0</version>
 			<scope>test</scope>
+		</dependency>
+
+
+		<!-- https://mvnrepository.com/artifact/io.cucumber/gherkin -->
+		<dependency>
+			<groupId>io.cucumber</groupId>
+			<artifactId>gherkin</artifactId>
+			<version>28.0.0</version>
 		</dependency>
 
 
 		<!--
 		https://mvnrepository.com/artifact/com.azure.spring/spring-cloud-azure-starter-active-directory -->
-		<dependency>
+		<!--		<dependency>
 			<groupId>com.azure.spring</groupId>
 			<artifactId>spring-cloud-azure-starter-active-directory</artifactId>
 			<version>6.0.0-beta.4</version>
 		</dependency>
-		<!-- https://mvnrepository.com/artifact/io.rest-assured/rest-assured -->
+		 https://mvnrepository.com/artifact/io.rest-assured/rest-assured 
 		<dependency>
 			<groupId>io.rest-assured</groupId>
 			<artifactId>rest-assured</artifactId>
@@ -232,9 +189,7 @@
 			<artifactId>aerogear-otp-java</artifactId>
 			<version>1.0.0</version>
 		</dependency>
-
-
+-->
 	</dependencies>
-
 
 </project>

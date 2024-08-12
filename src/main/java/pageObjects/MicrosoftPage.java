@@ -22,7 +22,8 @@ public class MicrosoftPage {
 	@FindBy(xpath = "//div[contains(text(), 'Sign in')]")
 	WebElement Singinbutton;
 
-	public void signIN() {
+	public void signIN()
+	{
 		WaitUtils.waitForElementToBeClickable(driver, Singinbutton);
 		Singinbutton.click();
 	}

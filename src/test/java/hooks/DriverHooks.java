@@ -6,56 +6,65 @@ import java.util.Properties;
 
 import org.openqa.selenium.WebDriver;
 
-import com.aventstack.extentreports.ExtentTest;
-
 import base.BaseClass;
 import io.cucumber.java.After;
 import io.cucumber.java.Before;
 import io.cucumber.java.Scenario;
 import utilities.RetryManager;
-import utilities.ConfigReader;
 import utilities.TestNGXmlGenerator;
 
-public class DriverHooks {
-    // Fetch configurations
-    private static final int MAX_RETRY_COUNT = Integer.parseInt(ConfigReader.getProperty("max.retry.count"));
-    private static final boolean RETRY_ENABLED = Boolean.parseBoolean(ConfigReader.getProperty("retry.enabled"));
-    private static ThreadLocal<Integer> retryCount = ThreadLocal.withInitial(() -> 0);
-    private static ThreadLocal<ExtentTest> currentTest = new ThreadLocal<>();
+public class DriverHooks 
 
-    @Before
-    public void setUp(Scenario scenario) {
-        // Initialize WebDriver
-        WebDriver driver = BaseClass.getDriver();
-        System.out.println("WebDriver initialized: " + driver);
+	{
 
-        // Setup configuration and generate TestNG XML
-        setupConfiguration();
+	@Before
+	public void setUp(Scenario scenario) 
+	
+	{
+		// Initialize WebDriver based on the browser specified in the config file
+		WebDriver driver = BaseClass.getDriver();
+		System.out.println("WebDriver initialized: " + driver);
 
-        // Initialize test report for the scenario
-        RetryManager.initializeTest(scenario);
-    }
+		// Setup configuration and generate TestNG XML if required
+		// setupConfiguration();
 
-    @After
-    public void tearDown(Scenario scenario) {
-        // Handle failure and retries
-        RetryManager.handleFailure(scenario);
-        
-        // Close WebDriver and perform cleanup
-        BaseClass.quitDriver();
-    }
+		// Initialize the test report for the scenario
+		RetryManager.initializeTest(scenario);
+	}
 
-    private void setupConfiguration() {
-        Properties properties = new Properties();
-        try (InputStream inputStream = getClass().getClassLoader().getResourceAsStream("config/config.properties")) {
-            if (inputStream == null) {
-                throw new RuntimeException("Property file 'config/config.properties' not found in the classpath");
-            }
-            properties.load(inputStream);
-            TestNGXmlGenerator.generateTestNGXml(properties);
-        } catch (IOException e) {
-            e.printStackTrace();
-            throw new RuntimeException("Failed to load properties file", e);
-        }
-    }
+	@After
+	public void tearDown(Scenario scenario) 
+	
+	{
+		// Handle retries and failures, including screenshot capture
+		RetryManager.handleFailure(scenario);
+
+		// Quit WebDriver and perform cleanup
+		BaseClass.quitDriver();
+	}
+
+	private void setupConfiguration() {
+		Properties properties = new Properties();
+		try (InputStream inputStream = getClass().getClassLoader().getResourceAsStream("config/config.properties")) 
+		
+		{
+			if (inputStream == null) 
+			
+			{
+				throw new RuntimeException("Property file 'config/config.properties' not found in the classpath");
+			}
+			properties.load(inputStream);
+
+			// Generate the TestNG XML file based on the properties
+			// TestNGXmlGenerator.generateTestNGXml();
+
+		} catch (IOException e) 
+		
+		{
+			e.printStackTrace();
+			
+			throw new RuntimeException("Failed to load properties file", e);
+		}
+	}
+
 }

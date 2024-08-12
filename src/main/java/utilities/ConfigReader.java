@@ -41,4 +41,9 @@ public class ConfigReader {
 		}
 		return Boolean.parseBoolean(value);
 	}
+
+	public static Properties getProperties() {
+		return properties;
+	}
+
 }

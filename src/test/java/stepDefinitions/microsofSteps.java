@@ -1,9 +1,12 @@
 package stepDefinitions;
 
+import static org.testng.Assert.assertTrue;
+
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.PageFactory;
 
 import com.aventstack.extentreports.ExtentTest;
+import com.aventstack.extentreports.util.Assert;
 
 import base.BaseClass;
 import io.cucumber.java.en.Given;
@@ -33,6 +36,13 @@ public class microsofSteps {
 		mspage.signIN();
 	  	}
 
+	
+	@Given( "user click1 on loginbutton")
+	public void user_click1_on_loginbutton()
+	{
+	    assertTrue(false);
+	}
+	
 	@Then("user enter the loginId and cick on next")
 	public void user_enter_the_login_id_and_cick_on_next() 
 	{
